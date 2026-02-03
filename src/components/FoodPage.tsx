@@ -1,0 +1,139 @@
+import Image from "next/image";
+
+export default function FoodPage() {
+  return (
+    <main className="min-h-screen bg-[#FFD3D5] text-[#89986D] px-6 py-16 font-[var(--font-inter)]">
+      <section className="max-w-5xl mx-auto space-y-24">
+        {/* PAGE TITLE */}
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight font-[var(--font-playfair)]">
+            Food + Drink
+          </h1>
+          <div className="mx-auto h-[3px] w-20 sm:w-24 rounded-full bg-[#89986D]/60" />
+        </div>
+
+        {/* SECTION 1 */}
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* TEXT */}
+          <div className="space-y-8 text-center md:text-left">
+            <div className="space-y-3">
+              <p className="uppercase tracking-[0.3em] text-xs text-[#89986D]/70 text-center md:text-left">
+                Menu
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight font-[var(--font-playfair)]">
+                Menu Highlights
+              </h2>
+              <div className="mx-auto md:mx-0 h-[2px] w-16 rounded-full bg-[#89986D]/50" />
+            </div>
+
+            <p className="text-base sm:text-lg leading-relaxed">
+              A selection of seasonal dishes and drinks will be served
+              throughout the day. Expect thoughtfully chosen canapés, a relaxed
+              sit-down meal, and something sweet to finish.
+            </p>
+
+            <ul className="list-disc list-inside text-base sm:text-lg space-y-2 marker:text-[#89986D]/70">
+              <li>Canapés & starters</li>
+              <li>Main courses</li>
+              <li>Desserts</li>
+            </ul>
+          </div>
+
+          {/* IMAGES */}
+          <div className="grid grid-cols-2 grid-rows-2 gap-4">
+            {[
+              "/images/Kingstreet-rooftop-view.jpg",
+              "/images/pimms.jpeg",
+              "/images/canape-platter.webp",
+              "/images/kingstreet-rooftop-daytime.jpg",
+            ].map((src, idx) => (
+              <div
+                key={idx}
+                className="relative h-40 sm:h-48 rounded-2xl overflow-hidden shadow-lg shadow-black/20 transform transition-transform duration-300 hover:scale-105"
+              >
+                <Image
+                  src={src}
+                  alt={`Food image ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* SECTION 2 */}
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* IMAGES */}
+          <div className="grid grid-cols-2 grid-rows-2 gap-4">
+            {[
+              "/images/Blackfriar-restaurant.jpeg",
+              "/images/Kingstreet-rooftop.jpg",
+              "/images/us.jpeg",
+              "/images/kliz brella.jpeg",
+            ].map((src, idx) => (
+              <div
+                key={idx}
+                className="relative h-40 sm:h-48 rounded-2xl overflow-hidden shadow-lg shadow-black/20 transform transition-transform duration-300 hover:scale-105"
+              >
+                <Image
+                  src={src}
+                  alt={`Drinks image ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* TEXT */}
+          <div className="space-y-10 text-center md:text-left">
+            <div className="space-y-3">
+              <p className="uppercase tracking-[0.3em] text-xs text-[#89986D]/70">
+                Drinks
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight font-[var(--font-playfair)]">
+                Drinks Throughout the Day
+              </h2>
+              <div className="mx-auto md:mx-0 h-[2px] w-16 rounded-full bg-[#89986D]/50" />
+            </div>
+
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="uppercase tracking-widest text-xs sm:text-sm font-semibold text-[#89986D]/80">
+                  Post-Ceremony
+                </h3>
+                <p className="text-base sm:text-lg leading-relaxed">
+                  A drinks reception will follow the ceremony with both
+                  alcoholic and non-alcoholic options. A bar will be available
+                  for anyone wishing to purchase additional drinks.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="uppercase tracking-widest text-xs sm:text-sm font-semibold text-[#89986D]/80">
+                  Daytime Reception
+                </h3>
+                <p className="text-base sm:text-lg leading-relaxed">
+                  Wine, beer, and soft drinks will be served throughout the
+                  meal, with a bar available for additional or alternative
+                  choices.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="uppercase tracking-widest text-xs sm:text-sm font-semibold text-[#89986D]/80">
+                  Evening Reception
+                </h3>
+                <p className="text-base sm:text-lg leading-relaxed">
+                  Evening guests will be welcomed with drinks, and the bar will
+                  remain open throughout the night.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
