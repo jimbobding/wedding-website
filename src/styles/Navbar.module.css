@@ -93,3 +93,10 @@
     position: relative;
   }
 }
+/* Active link (current page) */
+.activeLink {
+  color: #839f6d; /* green accent */
+  transform: scale(1.05);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}

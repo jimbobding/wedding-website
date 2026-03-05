@@ -1,7 +1,7 @@
 export default function InfoPage() {
   return (
     <main className="min-h-screen bg-[#90A17D] text-[#EEEEEE] p-10">
-      <section className="max-w-5xl mx-auto space-y-12">
+      <section className="max-w-5xl mx-auto space-y-12" id="info">
         <h1 className="text-5xl font-bold text-center">Further Information</h1>
 
         {/* SECTION 1 */}

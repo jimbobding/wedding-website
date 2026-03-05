@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function DressPage() {
   return (
     <main className="min-h-screen bg-[#FFD3D5] text-[#89986D] px-6 py-16 font-[var(--font-inter)]">
-      <section className="max-w-5xl mx-auto space-y-24">
+      <section className="max-w-5xl mx-auto space-y-24" id="dress">
         {/* PAGE TITLE */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight font-[var(--font-playfair)]">

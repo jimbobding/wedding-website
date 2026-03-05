@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
+import MenuChoices from "./MenuChoices";
 
 export default function FoodPage() {
   return (
     <main className="min-h-screen bg-[#FFD3D5] text-[#89986D] px-6 py-16 font-[var(--font-inter)]">
-      <section className="max-w-5xl mx-auto space-y-24">
+      <section className="max-w-5xl mx-auto space-y-20" id="food">
         {/* PAGE TITLE */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight font-[var(--font-playfair)]">
@@ -12,12 +14,12 @@ export default function FoodPage() {
           <div className="mx-auto h-[3px] w-20 sm:w-24 rounded-full bg-[#89986D]/60" />
         </div>
 
-        {/* SECTION 1 */}
+        {/* SECTION 1: MENU HIGHLIGHTS + IMAGES */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* TEXT */}
           <div className="space-y-8 text-center md:text-left">
             <div className="space-y-3">
-              <p className="uppercase tracking-[0.3em] text-xs text-[#89986D]/70 text-center md:text-left">
+              <p className="uppercase tracking-[0.3em] text-xs text-[#89986D]/70">
                 Menu
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight font-[var(--font-playfair)]">
@@ -62,7 +64,7 @@ export default function FoodPage() {
           </div>
         </div>
 
-        {/* SECTION 2 */}
+        {/* SECTION 2: DRINKS + IMAGES */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* IMAGES */}
           <div className="grid grid-cols-2 grid-rows-2 gap-4">
@@ -132,6 +134,25 @@ export default function FoodPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* SECTION 3: MEAL CHOICES (BOTTOM) */}
+        <div className="space-y-6">
+          <div className="text-center space-y-3">
+            <p className="uppercase tracking-[0.3em] text-xs text-[#89986D]/70">
+              RSVP Meal Choice
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight font-[var(--font-playfair)]">
+              Choose your starter + main
+            </h2>
+            <p className="text-sm sm:text-base text-[#89986D]/90">
+              <span className="font-semibold">Day guests only:</span> if you’re
+              joining us for the daytime meal, please choose your starter and
+              main below before completing your RSVP.
+            </p>
+          </div>
+
+          <MenuChoices />
         </div>
       </section>
     </main>
