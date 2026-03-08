@@ -40,10 +40,18 @@ export default function RSVPForm() {
   useEffect(() => {
     setMealChoices(readMealChoices());
 
+    const syncMealChoices = () => {
+      setMealChoices(readMealChoices());
+    };
+
     const onStorage = (e: StorageEvent) => {
       if (e.key === MEAL_CHOICES_KEY) {
-        setMealChoices(readMealChoices());
+        syncMealChoices();
       }
+    };
+
+    const onUpdated = () => {
+      syncMealChoices();
     };
 
     const onReset = () => {
@@ -51,10 +59,12 @@ export default function RSVPForm() {
     };
 
     window.addEventListener("storage", onStorage);
+    window.addEventListener("wedding:mealChoicesUpdated", onUpdated);
     window.addEventListener("wedding:mealChoicesReset", onReset);
 
     return () => {
       window.removeEventListener("storage", onStorage);
+      window.removeEventListener("wedding:mealChoicesUpdated", onUpdated);
       window.removeEventListener("wedding:mealChoicesReset", onReset);
     };
   }, []);
