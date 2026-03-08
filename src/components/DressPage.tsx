@@ -56,7 +56,7 @@ export default function DressPage() {
           {/* IMAGE */}
           <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg shadow-black/20 bg-[#89986D]/10 flex items-center justify-center">
             <Image
-              src="/images/rsvp/WhatsApp Image 2026-03-06 at 11.37.47 (1).jpeg"
+              src="/images/RSVP/holidayus.jpeg"
               alt="Extra wedding information"
               fill
               className="object-cover"
