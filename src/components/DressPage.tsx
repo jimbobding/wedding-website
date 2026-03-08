@@ -55,9 +55,13 @@ export default function DressPage() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* IMAGE */}
           <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg shadow-black/20 bg-[#89986D]/10 flex items-center justify-center">
-            <span className="uppercase tracking-widest text-xs text-[#89986D]/60">
-              Gift Image
-            </span>
+            <Image
+              src="/images/rsvp/WhatsApp Image 2026-03-06 at 11.37.47 (1).jpeg"
+              alt="Extra wedding information"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
 
           {/* TEXT */}

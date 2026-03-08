@@ -45,7 +45,7 @@ export default function FoodPage() {
           <div className="grid grid-cols-2 grid-rows-2 gap-4">
             {[
               "/images/Kingstreet-rooftop-view.jpg",
-              "/images/pimms.jpeg",
+              "/images/Food/boddingtons.jpg",
               "/images/canape-platter.webp",
               "/images/kingstreet-rooftop-daytime.jpg",
             ].map((src, idx) => (
@@ -71,8 +71,8 @@ export default function FoodPage() {
             {[
               "/images/Blackfriar-restaurant.jpeg",
               "/images/Kingstreet-rooftop.jpg",
-              "/images/us.jpeg",
-              "/images/kliz brella.jpeg",
+              "/images/Food/fizzy.jpg",
+              "/images/Food/pie.jpg",
             ].map((src, idx) => (
               <div
                 key={idx}
@@ -147,8 +147,8 @@ export default function FoodPage() {
             </h2>
             <p className="text-sm sm:text-base text-[#89986D]/90">
               <span className="font-semibold">Day guests only:</span> if you’re
-              joining us for the sit down meal, please choose your starter and
-              main below before completing your RSVP.
+              joining us for the sit meal, please choose your starter and main
+              below before completing your RSVP.
             </p>
           </div>
 

@@ -8,6 +8,11 @@ type ChoiceState = {
   main?: string;
 };
 
+type MenuItem = {
+  name: string;
+  extras: string;
+};
+
 const STORAGE_KEY = "wedding_meal_choices_v1";
 
 function notifyMealChoicesUpdated() {
@@ -15,20 +20,38 @@ function notifyMealChoicesUpdated() {
 }
 
 export default function MenuChoices() {
-  const starters = useMemo(
+  const starters = useMemo<MenuItem[]>(
     () => [
-      "Spring Leek + Potato Soup",
-      "Wild Mushroom Tortellini",
-      "Duck Liver Parfait",
+      {
+        name: "Chicken Liver Parfait",
+        extras: "Red onion marmalade, toasted bread",
+      },
+      {
+        name: "Hot Smoked Sea Trout",
+        extras: "Potato hash, brown confit lemon, wasabi crème fraîche",
+      },
+      {
+        name: "Caramelised Onion & Spinach Ravioli (Vegan)",
+        extras: "Parmesan, herb butter",
+      },
     ],
     [],
   );
 
-  const mains = useMemo(
+  const mains = useMemo<MenuItem[]>(
     () => [
-      "Chalk Stream Trout",
-      "Black Garlic Crumb Chicken",
-      "Risotto Primavera",
+      {
+        name: "Roast Chicken Breast",
+        extras: "Confit garlic mash, green peppercorn & pancetta velouté",
+      },
+      {
+        name: "Braised Feather Blade of Beef",
+        extras: "Truffle parmesan croquette, jus, seasonal greens",
+      },
+      {
+        name: "Ratatouille Pie (Vegan)",
+        extras: "Roasted vegetables, rich tomato sauce",
+      },
     ],
     [],
   );
@@ -46,13 +69,10 @@ export default function MenuChoices() {
     }
   });
 
-  // ✅ NEW: Listen for the reset event fired by RSVPForm
   useEffect(() => {
     function handleReset() {
-      // clear what this component is holding in memory
       setChoice({});
 
-      // also clear the browser "sticky note"
       try {
         localStorage.removeItem(STORAGE_KEY);
       } catch {}
@@ -77,10 +97,11 @@ export default function MenuChoices() {
           RSVP Meal Choice
         </p>
         <h3 className="text-xl sm:text-2xl font-semibold font-[var(--font-playfair)]">
-          Pick your starter + main
+          Choose your starter + main
         </h3>
         <p className="text-sm sm:text-base text-[#89986D]/90">
-          Your choices will carry over to the RSVP form automatically.
+          Please select one starter and one main. Your choices will carry over
+          to the RSVP form automatically.
         </p>
       </div>
 
@@ -93,14 +114,15 @@ export default function MenuChoices() {
 
           <div className="grid gap-3">
             {starters.map((item) => {
-              const selected = choice.starter === item;
+              const selected = choice.starter === item.name;
+
               return (
                 <button
-                  key={item}
+                  key={item.name}
                   type="button"
                   onClick={() =>
                     setChoice((c) => {
-                      const next = { ...c, starter: item };
+                      const next = { ...c, starter: item.name };
                       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
                       notifyMealChoicesUpdated();
                       return next;
@@ -113,9 +135,14 @@ export default function MenuChoices() {
                       : "border-[#89986D]/20 bg-white/30 hover:bg-white/50",
                   ].join(" ")}
                 >
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="font-medium">{item}</span>
-                    <span className="text-sm">{selected ? "✅" : ""}</span>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <p className="font-semibold">{item.name}</p>
+                      <p className="text-sm text-[#5f6b4d]">{item.extras}</p>
+                    </div>
+                    <span className="text-sm shrink-0">
+                      {selected ? "✅" : ""}
+                    </span>
                   </div>
                 </button>
               );
@@ -131,14 +158,15 @@ export default function MenuChoices() {
 
           <div className="grid gap-3">
             {mains.map((item) => {
-              const selected = choice.main === item;
+              const selected = choice.main === item.name;
+
               return (
                 <button
-                  key={item}
+                  key={item.name}
                   type="button"
                   onClick={() =>
                     setChoice((c) => {
-                      const next = { ...c, main: item };
+                      const next = { ...c, main: item.name };
                       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
                       notifyMealChoicesUpdated();
                       return next;
@@ -151,9 +179,14 @@ export default function MenuChoices() {
                       : "border-[#89986D]/20 bg-white/30 hover:bg-white/50",
                   ].join(" ")}
                 >
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="font-medium">{item}</span>
-                    <span className="text-sm">{selected ? "✅" : ""}</span>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <p className="font-semibold">{item.name}</p>
+                      <p className="text-sm text-[#5f6b4d]">{item.extras}</p>
+                    </div>
+                    <span className="text-sm shrink-0">
+                      {selected ? "✅" : ""}
+                    </span>
                   </div>
                 </button>
               );

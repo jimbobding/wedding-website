@@ -3,56 +3,58 @@ import Image from "next/image";
 export default function InfoPage() {
   return (
     <main className="min-h-screen bg-[#90A17D] text-[#EEEEEE] px-6 py-10 sm:px-8 lg:px-10">
-      <section className="max-w-5xl mx-auto space-y-12">
+      <section className="max-w-4xl mx-auto space-y-12">
         <h1 className="text-4xl sm:text-5xl font-bold text-center">
           Further Information
         </h1>
 
-        {/* SECTION 1 */}
-        <div className="grid md:grid-cols-2 gap-10 items-start">
-          <div className="space-y-4">
-            <h2 className="text-3xl font-semibold">FAQs</h2>
-            <p className="text-lg leading-relaxed">
-              Add common questions and answers here.
-            </p>
-          </div>
-
-          <div className="relative w-full h-64 sm:h-80 overflow-hidden rounded-xl shadow-lg">
+        {/* IMAGE */}
+        <div className="flex justify-center">
+          <div className="relative w-full max-w-xl h-64 sm:h-80 overflow-hidden rounded-2xl shadow-lg">
             <Image
-              src="/images/rsvp/WhatsApp Image 2026-03-06 at 11.37.47 (3).jpeg"
+              src="/images/FAQ/FAQ.jpeg"
               alt="Frequently asked questions"
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, 600px"
               priority
             />
           </div>
         </div>
 
-        {/* SECTION 2 */}
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div className="relative w-full h-64 sm:h-80 overflow-hidden rounded-xl shadow-lg">
-            <Image
-              src="/images/rsvp/WhatsApp Image 2026-03-06 at 11.37.47 (1).jpeg"
-              alt="Extra wedding information"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
+        {/* FAQ CARD */}
+        <div className="rounded-2xl bg-white/10 p-6 sm:p-8 shadow-lg backdrop-blur-sm">
+          <h2 className="text-3xl font-semibold text-center mb-6">FAQs</h2>
 
-          <div className="space-y-4">
-            <h2 className="text-3xl font-semibold">Anything Else</h2>
-            <p className="text-lg leading-relaxed">
-              Add timings, weather advice, childcare info, transport notes, or
-              anything else guests may need to know before the day.
-            </p>
-            <a
-              href="#"
-              className="underline font-medium hover:opacity-80 transition"
-            >
-              Contact us →
-            </a>
+          <div className="space-y-6 text-base sm:text-lg leading-relaxed text-center">
+            <div className="space-y-2">
+              <p className="font-semibold text-xl">Can I bring a plus one?</p>
+              <p className="text-white/90">
+                The email sent along with your invitation will detail who is
+                invited.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="font-semibold text-xl">Are children invited?</p>
+              <p className="text-white/90">
+                The wedding is mainly child-free, although we will be inviting
+                children who are close family members or who have travelled with
+                their family from abroad to attend. The email accompanying your
+                invite will outline if your children are invited.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="font-semibold text-xl">
+                Do the venues have parking?
+              </p>
+              <p className="text-white/90">
+                Neither venue has parking. Public transport or taxis are the
+                best options, although there are paid car parks at various
+                locations around the city centre.
+              </p>
+            </div>
           </div>
         </div>
       </section>
