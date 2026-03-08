@@ -44,7 +44,7 @@ export async function submitRSVP(data: RSVPData) {
   // ---- 2) Email to you (admin notification) ----
   const adminEmailResult = await resend.emails.send({
     from: process.env.FROM_EMAIL,
-    to: "jimmygrahamdavid@gmail.com",
+    to: "lizzyandjimmytietheknot@gmail.com",
     subject: `New RSVP from ${data.name} 💌`,
     html: `
     <h2>New RSVP Received</h2>
