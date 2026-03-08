@@ -1,5 +1,5 @@
 .hero {
-  background-color: 880e4F; /* light cream */
+  background-color: #ffd3d5;
   padding: 4rem 2rem;
   text-align: center;
   width: 100%;
@@ -11,14 +11,14 @@
 .title {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: 90A17D;
+  color: #90a17d;
   font-weight: 700;
 }
 
 .heroImageWrapper {
   max-width: 600px;
   width: 100%;
-  border: 8px solid #839f6d; /* muted green */
+  border: 8px solid #708993;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 2rem;

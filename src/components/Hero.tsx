@@ -1,10 +1,10 @@
 import Image from "next/image";
-// import styles from "@/styles/Hero.module.css";
+
 import styles from "../styles/Hero.module.css";
 
 export default function Hero() {
   return (
-    <section className={styles.hero} text-pink-900>
+    <section className={`${styles.hero} text-pink-900`}>
       <h1 className={styles.title}>Welcome to Jimmy & Lizzy’s Wedding</h1>
 
       <div className={styles.heroImageWrapper}>

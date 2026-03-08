@@ -147,7 +147,7 @@ export default function FoodPage() {
             </h2>
             <p className="text-sm sm:text-base text-[#89986D]/90">
               <span className="font-semibold">Day guests only:</span> if you’re
-              joining us for the daytime meal, please choose your starter and
+              joining us for the sit down meal, please choose your starter and
               main below before completing your RSVP.
             </p>
           </div>

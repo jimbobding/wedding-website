@@ -4,7 +4,8 @@
   justify-content: center; /* center links on desktop */
   align-items: center;
   padding: 1rem 2rem;
-  background-color: black; /* pink background */
+  background-color: #708993;
+
   border-bottom: 4px solid #839f6d; /* green accent line */
   position: sticky;
   top: 0;
