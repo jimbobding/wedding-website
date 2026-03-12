@@ -44,7 +44,19 @@ export default function RSVPForm() {
   });
 
   useEffect(() => {
-    setMealChoices(readMealChoices());
+    const syncMealChoices = () => {
+      setMealChoices(readMealChoices());
+    };
+
+    syncMealChoices();
+
+    window.addEventListener("wedding:mealChoicesUpdated", syncMealChoices);
+    window.addEventListener("wedding:mealChoicesReset", syncMealChoices);
+
+    return () => {
+      window.removeEventListener("wedding:mealChoicesUpdated", syncMealChoices);
+      window.removeEventListener("wedding:mealChoicesReset", syncMealChoices);
+    };
   }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -80,7 +92,6 @@ export default function RSVPForm() {
 
       formElement.reset();
       resetMealChoices();
-      setMealChoices({ starter: "", main: "" });
       setSubmitted(true);
     } catch (error) {
       console.error(error);
