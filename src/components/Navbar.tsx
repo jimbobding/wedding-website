@@ -11,7 +11,7 @@ const links = [
   { id: "travel", label: "Travel + Accommodation" },
   { id: "dress", label: "Dress Code + Gifts" },
   { id: "rsvp", label: "RSVP" },
-  { id: "info", label: "Further Info" },
+  { id: "info", label: "FAQ" },
 ];
 
 export default function Navbar() {

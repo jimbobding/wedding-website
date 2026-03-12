@@ -81,10 +81,10 @@ export default function ExpectPage() {
                 Day
               </h3>
               <p className="text-base sm:text-lg leading-relaxed text-[#EEEEEE]/90">
-                Coaches will arrive at approximately <b>3pm</b>. A breakfast
-                meal will be provided along with wine, beer, and soft drinks.
-                There will also be a bar for additional purchases. Quiet spaces
-                will be available for anyone needing gentler socialising.
+                Coaches will arrive at approximately <b>3pm</b>. A meal will be
+                provided along with wine, beer, and soft drinks. There will also
+                be a bar for additional purchases. Quiet spaces will be
+                available for anyone needing gentler socialising.
               </p>
             </div>
 

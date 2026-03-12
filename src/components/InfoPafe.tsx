@@ -1,28 +1,7 @@
-import Image from "next/image";
-
 export default function InfoPage() {
   return (
-    <main className="min-h-screen bg-[#90A17D] text-[#EEEEEE] px-6 py-10 sm:px-8 lg:px-10">
-      <section className="max-w-4xl mx-auto space-y-12">
-        <h1 className="text-4xl sm:text-5xl font-bold text-center">
-          Further Information
-        </h1>
-
-        {/* IMAGE */}
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-xl h-64 sm:h-80 overflow-hidden rounded-2xl shadow-lg">
-            <Image
-              src="/images/FAQ/FAQ.jpeg"
-              alt="Frequently asked questions"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 600px"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* FAQ CARD */}
+    <main className="min-h-screen bg-[#90A17D] text-[#EEEEEE] px-6 py-10 sm:px-8 lg:px-10 flex items-center justify-center">
+      <section className="w-full max-w-4xl" id="info">
         <div className="rounded-2xl bg-white/10 p-6 sm:p-8 shadow-lg backdrop-blur-sm">
           <h2 className="text-3xl font-semibold text-center mb-6">FAQs</h2>
 

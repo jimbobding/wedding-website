@@ -20,24 +20,24 @@ export default function FoodPage() {
           <div className="space-y-8 text-center md:text-left">
             <div className="space-y-3">
               <p className="uppercase tracking-[0.3em] text-xs text-[#89986D]/70">
-                Menu
+                Food
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight font-[var(--font-playfair)]">
-                Menu Highlights
+                Food throughout the Day
               </h2>
               <div className="mx-auto md:mx-0 h-[2px] w-16 rounded-full bg-[#89986D]/50" />
             </div>
 
             <p className="text-base sm:text-lg leading-relaxed">
-              A selection of seasonal dishes and drinks will be served
-              throughout the day. Expect thoughtfully chosen canapés, a relaxed
-              sit-down meal, and something sweet to finish.
+              A selection of food to meet all dietary requirements will be
+              served throughout the day.
             </p>
 
             <ul className="list-disc list-inside text-base sm:text-lg space-y-2 marker:text-[#89986D]/70">
-              <li>Canapés & starters</li>
-              <li>Main courses</li>
-              <li>Desserts</li>
+              <li>Canapes</li>
+              <li>Two-course sit down meal</li>
+              <li>Cake buffet</li>
+              <li>Light evening food</li>
             </ul>
           </div>
 

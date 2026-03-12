@@ -18,10 +18,12 @@
 .heroImageWrapper {
   max-width: 600px;
   width: 100%;
-  border: 8px solid #708993;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 2rem;
+
+  /* ✨ soft shadow instead of border */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .heroImage {
@@ -33,11 +35,11 @@
 .paragraph {
   max-width: 700px;
   font-size: 1.25rem;
-  color: #4f4d49; /* dark gray */
+  color: #4f4d49;
   line-height: 1.6;
 }
 
 .highlight {
-  color: #f7717d; /* vibrant pink accent */
+  color: #f7717d;
   font-weight: 600;
 }

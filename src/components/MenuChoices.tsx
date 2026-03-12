@@ -23,16 +23,16 @@ export default function MenuChoices() {
   const starters = useMemo<MenuItem[]>(
     () => [
       {
-        name: "Chicken Liver Parfait",
-        extras: "Red onion marmalade, toasted bread",
+        name: "CHICKEN LIVER PARFAIT",
+        extras: "red onion marmalade + toast",
       },
       {
-        name: "Hot Smoked Sea Trout",
-        extras: "Potato hash, brown confit lemon, wasabi crème fraîche",
+        name: "CARAMELISED ONION + SPINACH RAVIOLI (VG)",
+        extras: "toasted pine nuts, burnt leek + lemon gel",
       },
       {
-        name: "Caramelised Onion & Spinach Ravioli (Vegan)",
-        extras: "Parmesan, herb butter",
+        name: "HOT SMOKED SEA TROUT (GF)*",
+        extras: "potato hash brown, confit lemon + wasabi crème fraiche",
       },
     ],
     [],
@@ -41,16 +41,16 @@ export default function MenuChoices() {
   const mains = useMemo<MenuItem[]>(
     () => [
       {
-        name: "Roast Chicken Breast",
-        extras: "Confit garlic mash, green peppercorn & pancetta velouté",
+        name: "ROAST CHICKEN BREAST",
+        extras: "confit garlic mash, green peppercorn + pancetta velouté",
       },
       {
-        name: "Braised Feather Blade of Beef",
-        extras: "Truffle parmesan croquette, jus, seasonal greens",
+        name: "BRAISED FEATHER BLADE OF BEEF (GF)*(DF)*",
+        extras: "truffle + parmesan croquette, jus + greens",
       },
       {
-        name: "Ratatouille Pie (Vegan)",
-        extras: "Roasted vegetables, rich tomato sauce",
+        name: "RATATOULLIE PIE (V)(VG)*",
+        extras: "herby new potatoes, burrata + herb crust",
       },
     ],
     [],
@@ -84,29 +84,22 @@ export default function MenuChoices() {
     };
   }, []);
 
-  function save() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(choice));
-    } catch {}
-  }
-
   return (
-    <section className="rounded-3xl border border-[#89986D]/30 bg-white/40 p-6 sm:p-8 shadow-lg shadow-black/10">
+    <section className="rounded-3xl border border-[#89986D]/30 bg-white/40 p-6 shadow-lg shadow-black/10 sm:p-8">
       <div className="space-y-2 text-center md:text-left">
-        <p className="uppercase tracking-[0.3em] text-xs text-[#89986D]/70">
+        <p className="text-xs uppercase tracking-[0.3em] text-[#89986D]/70">
           RSVP Meal Choice
         </p>
-        <h3 className="text-xl sm:text-2xl font-semibold font-[var(--font-playfair)]">
+        <h3 className="font-[var(--font-playfair)] text-xl font-semibold sm:text-2xl">
           Choose your starter + main
         </h3>
-        <p className="text-sm sm:text-base text-[#89986D]/90">
+        <p className="text-sm text-[#89986D]/90 sm:text-base">
           Please select one starter and one main. Your choices will carry over
           to the RSVP form automatically.
         </p>
       </div>
 
-      <div className="mt-6 grid md:grid-cols-2 gap-6">
-        {/* Starters */}
+      <div className="mt-6 grid gap-6 md:grid-cols-2">
         <div className="space-y-3">
           <h4 className="text-sm font-semibold uppercase tracking-widest text-[#89986D]/80">
             Starters
@@ -129,7 +122,7 @@ export default function MenuChoices() {
                     })
                   }
                   className={[
-                    "text-left rounded-2xl border p-4 transition",
+                    "rounded-2xl border p-4 text-left transition",
                     selected
                       ? "border-[#89986D] bg-white/70 shadow"
                       : "border-[#89986D]/20 bg-white/30 hover:bg-white/50",
@@ -140,7 +133,7 @@ export default function MenuChoices() {
                       <p className="font-semibold">{item.name}</p>
                       <p className="text-sm text-[#5f6b4d]">{item.extras}</p>
                     </div>
-                    <span className="text-sm shrink-0">
+                    <span className="shrink-0 text-sm">
                       {selected ? "✅" : ""}
                     </span>
                   </div>
@@ -150,7 +143,6 @@ export default function MenuChoices() {
           </div>
         </div>
 
-        {/* Mains */}
         <div className="space-y-3">
           <h4 className="text-sm font-semibold uppercase tracking-widest text-[#89986D]/80">
             Mains
@@ -173,7 +165,7 @@ export default function MenuChoices() {
                     })
                   }
                   className={[
-                    "text-left rounded-2xl border p-4 transition",
+                    "rounded-2xl border p-4 text-left transition",
                     selected
                       ? "border-[#89986D] bg-white/70 shadow"
                       : "border-[#89986D]/20 bg-white/30 hover:bg-white/50",
@@ -184,7 +176,7 @@ export default function MenuChoices() {
                       <p className="font-semibold">{item.name}</p>
                       <p className="text-sm text-[#5f6b4d]">{item.extras}</p>
                     </div>
-                    <span className="text-sm shrink-0">
+                    <span className="shrink-0 text-sm">
                       {selected ? "✅" : ""}
                     </span>
                   </div>
@@ -195,19 +187,10 @@ export default function MenuChoices() {
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-        <button
-          type="button"
-          onClick={save}
-          className="rounded-2xl px-5 py-3 bg-[#89986D] text-white font-semibold hover:opacity-90 transition"
-        >
-          Save choices
-        </button>
-
+      <div className="mt-6 flex justify-center sm:justify-end">
         <Link
           href="#rsvp"
-          onClick={save}
-          className="rounded-2xl px-5 py-3 border border-[#89986D]/40 bg-white/50 font-semibold text-center hover:bg-white/70 transition"
+          className="rounded-2xl border border-[#89986D]/40 bg-white/50 px-5 py-3 text-center font-semibold transition hover:bg-white/70"
         >
           Continue to RSVP →
         </Link>

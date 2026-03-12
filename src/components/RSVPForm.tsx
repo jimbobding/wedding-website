@@ -5,21 +5,18 @@ import { submitRSVP } from "../actions/rsvp";
 
 const MEAL_CHOICES_KEY = "wedding_meal_choices_v1";
 
-function resetMealChoices() {
-  try {
-    localStorage.removeItem(MEAL_CHOICES_KEY);
-  } catch {}
-
-  window.dispatchEvent(new Event("wedding:mealChoicesReset"));
-}
-
-type MealChoices = { starter: string; main: string };
+type MealChoices = {
+  starter: string;
+  main: string;
+};
 
 function readMealChoices(): MealChoices {
   try {
     const saved = localStorage.getItem(MEAL_CHOICES_KEY);
     if (!saved) return { starter: "", main: "" };
+
     const parsed = JSON.parse(saved);
+
     return {
       starter: parsed?.starter ?? "",
       main: parsed?.main ?? "",
@@ -32,6 +29,7 @@ function readMealChoices(): MealChoices {
 export default function RSVPForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [mealChoices, setMealChoices] = useState<MealChoices>({
     starter: "",
     main: "",
@@ -39,34 +37,6 @@ export default function RSVPForm() {
 
   useEffect(() => {
     setMealChoices(readMealChoices());
-
-    const syncMealChoices = () => {
-      setMealChoices(readMealChoices());
-    };
-
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === MEAL_CHOICES_KEY) {
-        syncMealChoices();
-      }
-    };
-
-    const onUpdated = () => {
-      syncMealChoices();
-    };
-
-    const onReset = () => {
-      setMealChoices({ starter: "", main: "" });
-    };
-
-    window.addEventListener("storage", onStorage);
-    window.addEventListener("wedding:mealChoicesUpdated", onUpdated);
-    window.addEventListener("wedding:mealChoicesReset", onReset);
-
-    return () => {
-      window.removeEventListener("storage", onStorage);
-      window.removeEventListener("wedding:mealChoicesUpdated", onUpdated);
-      window.removeEventListener("wedding:mealChoicesReset", onReset);
-    };
   }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -74,31 +44,37 @@ export default function RSVPForm() {
     if (isSubmitting) return;
 
     setIsSubmitting(true);
+    setSubmitError("");
 
     const formElement = e.currentTarget;
     const form = new FormData(formElement);
 
-    const name = String(form.get("name") || "");
-    const email = String(form.get("email") || "");
-    const attending = String(form.get("attending") || "yes");
-    const dietary = String(form.get("dietary") || "");
-
-    const starter = mealChoices.starter;
-    const main = mealChoices.main;
+    const name = String(form.get("name") || "").trim();
+    const email = String(form.get("email") || "").trim();
+    const attending = String(form.get("attending") || "yes").trim();
+    const dietary = String(form.get("dietary") || "").trim();
+    const accessibility = String(form.get("accessibility") || "").trim();
 
     try {
-      await submitRSVP({
+      const result = await submitRSVP({
         name,
         email,
-        starter,
-        main,
-        dietary,
         attending,
+        starter: mealChoices.starter,
+        main: mealChoices.main,
+        dietary,
+        accessibility,
       });
 
+      if (!result.ok) {
+        throw new Error("RSVP submission failed");
+      }
+
       formElement.reset();
-      resetMealChoices();
       setSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Sorry, something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -106,19 +82,21 @@ export default function RSVPForm() {
 
   if (submitted) {
     return (
-      <div className="space-y-4 rounded-3xl border border-[#89986D]/30 bg-white/40 p-6 sm:p-8 shadow-lg shadow-black/10 text-center">
-        <p className="text-lg font-semibold">Thank you for RSVPing 💍</p>
-        <p className="text-sm text-[#89986D]/90">
-          We’ve received your details.
+      <div className="mx-auto mt-10 max-w-xl rounded-3xl border border-[#89986D]/30 bg-white p-8 text-center shadow-lg">
+        <h2 className="mb-3 text-2xl font-semibold">
+          Thank you for RSVPing 💍
+        </h2>
+        <p className="text-[#89986D]">
+          We have received your details and sent you a confirmation email.
         </p>
 
         <button
           type="button"
           onClick={() => {
-            resetMealChoices();
             setSubmitted(false);
+            setSubmitError("");
           }}
-          className="rounded-full px-5 py-3 bg-[#89986D] text-white font-semibold hover:opacity-90 transition w-full"
+          className="mt-6 rounded-full bg-[#89986D] px-6 py-3 font-semibold text-white transition hover:opacity-90"
         >
           OK
         </button>
@@ -126,73 +104,92 @@ export default function RSVPForm() {
     );
   }
 
-  const hasAnyChoice = !!mealChoices.starter || !!mealChoices.main;
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="rounded-3xl border border-[#89986D]/30 bg-white/40 p-4 sm:p-6 shadow-sm">
-        <p className="text-xs uppercase tracking-[0.3em] text-[#89986D]/70">
-          Your meal choices
+    <div className="mx-auto mt-10 max-w-xl space-y-6" id="rsvp">
+      <div className="text-center">
+        <h1 className="text-3xl font-semibold">RSVP</h1>
+        <p className="mt-2 text-[#89986D]">
+          Please confirm your attendance below
         </p>
-
-        {!hasAnyChoice ? (
-          <p className="mt-2 text-sm text-[#89986D]/90">
-            No choices selected yet. Go back to the meal choices page and pick a
-            starter + main.
-          </p>
-        ) : (
-          <div className="mt-3 space-y-2 text-sm">
-            <p>
-              <span className="font-semibold">Starter:</span>{" "}
-              {mealChoices.starter || "—"}
-            </p>
-            <p>
-              <span className="font-semibold">Main:</span>{" "}
-              {mealChoices.main || "—"}
-            </p>
-          </div>
-        )}
       </div>
 
-      <select
-        name="attending"
-        required
-        className="border border-[#89986D]/30 bg-white/70 p-3 w-full rounded-full"
-        defaultValue="yes"
+      <div className="rounded-2xl border border-[#89986D]/20 bg-[#f7f7f5] p-4 text-sm leading-6 text-[#5f694c]">
+        Please submit an RSVP for{" "}
+        <span className="font-semibold">each guest separately</span> so that
+        every person’s food choices are recorded correctly.
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 rounded-3xl border border-[#89986D]/30 bg-white p-6 shadow-lg"
       >
-        <option value="yes">Yes, I can make it</option>
-        <option value="no">No, sadly can’t</option>
-      </select>
+        <div className="rounded-xl bg-[#f7f7f5] p-4 text-sm">
+          <p className="mb-2 text-xs uppercase tracking-widest text-[#89986D]">
+            Your meal choices
+          </p>
 
-      <input
-        name="name"
-        placeholder="Your name"
-        required
-        className="border border-[#89986D]/30 bg-white/70 p-3 w-full rounded-full"
-      />
+          <p>
+            <strong>Starter:</strong> {mealChoices.starter || "—"}
+          </p>
 
-      <input
-        name="email"
-        type="email"
-        placeholder="Your email"
-        required
-        className="border border-[#89986D]/30 bg-white/70 p-3 w-full rounded-full"
-      />
+          <p>
+            <strong>Main:</strong> {mealChoices.main || "—"}
+          </p>
+        </div>
 
-      <textarea
-        name="dietary"
-        placeholder="Dietary requirements / allergies"
-        className="border border-[#89986D]/30 bg-white/70 p-3 w-full rounded-2xl"
-        rows={3}
-      />
+        {submitError && (
+          <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-600">
+            {submitError}
+          </div>
+        )}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="rounded-full px-5 py-3 bg-[#89986D] text-white font-semibold hover:opacity-90 transition w-full disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {isSubmitting ? "Sending..." : "Submit RSVP"}
-      </button>
-    </form>
+        <select
+          name="attending"
+          required
+          defaultValue="yes"
+          className="w-full rounded-full border border-[#89986D]/30 p-3"
+        >
+          <option value="yes">Yes, I can make it</option>
+          <option value="no">No, sadly can’t</option>
+        </select>
+
+        <input
+          name="name"
+          placeholder="Your name"
+          required
+          className="w-full rounded-full border border-[#89986D]/30 p-3"
+        />
+
+        <input
+          name="email"
+          type="email"
+          placeholder="Your email"
+          required
+          className="w-full rounded-full border border-[#89986D]/30 p-3"
+        />
+
+        <textarea
+          name="dietary"
+          placeholder="Dietary requirements / allergies"
+          rows={3}
+          className="w-full rounded-xl border border-[#89986D]/30 p-3"
+        />
+
+        <textarea
+          name="accessibility"
+          placeholder="Accessibility requirements"
+          rows={3}
+          className="w-full rounded-xl border border-[#89986D]/30 p-3"
+        />
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full rounded-full bg-[#89986D] py-3 font-semibold text-white transition hover:opacity-90"
+        >
+          {isSubmitting ? "Sending RSVP..." : "Submit RSVP"}
+        </button>
+      </form>
+    </div>
   );
 }

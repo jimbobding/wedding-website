@@ -3,7 +3,7 @@ export default function RSVPPage() {
   return (
     <main className="min-h-screen bg-[#FFD3D5] text-[#89986D] p-10">
       <section className="max-w-3xl mx-auto space-y-12" id="rsvp">
-        <h1 className="text-5xl font-bold text-center">RSVP</h1>
+        {/* <h1 className="text-5xl font-bold text-center">RSVP</h1> */}
 
         <div className="space-y-6">
           <RSVPForm />
