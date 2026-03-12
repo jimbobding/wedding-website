@@ -85,7 +85,10 @@ export default function MenuChoices() {
   }, []);
 
   return (
-    <section className="rounded-3xl border border-[#89986D]/30 bg-white/40 p-6 shadow-lg shadow-black/10 sm:p-8">
+    <section
+      className="rounded-3xl border border-[#89986D]/30 bg-white/40 p-6 shadow-lg shadow-black/10 sm:p-8"
+      id="menu"
+    >
       <div className="space-y-2 text-center md:text-left">
         <p className="text-xs uppercase tracking-[0.3em] text-[#89986D]/70">
           RSVP Meal Choice

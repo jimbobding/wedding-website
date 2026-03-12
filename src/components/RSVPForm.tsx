@@ -26,6 +26,14 @@ function readMealChoices(): MealChoices {
   }
 }
 
+function resetMealChoices() {
+  try {
+    localStorage.removeItem(MEAL_CHOICES_KEY);
+  } catch {}
+
+  window.dispatchEvent(new Event("wedding:mealChoicesReset"));
+}
+
 export default function RSVPForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,6 +79,8 @@ export default function RSVPForm() {
       }
 
       formElement.reset();
+      resetMealChoices();
+      setMealChoices({ starter: "", main: "" });
       setSubmitted(true);
     } catch (error) {
       console.error(error);
@@ -142,6 +152,13 @@ export default function RSVPForm() {
             {submitError}
           </div>
         )}
+
+        <a
+          href="#menu"
+          className="block w-full rounded-full border border-[#89986D]/30 bg-white py-3 text-center font-semibold text-[#89986D] transition hover:bg-[#f7f7f5]"
+        >
+          Back to menu choices
+        </a>
 
         <select
           name="attending"
