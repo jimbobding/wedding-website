@@ -191,12 +191,12 @@ export default function MenuChoices() {
       </div>
 
       <div className="mt-6 flex justify-center sm:justify-end">
-        <Link
+        <a
           href="#rsvp"
           className="rounded-2xl border border-[#89986D]/40 bg-white/50 px-5 py-3 text-center font-semibold transition hover:bg-white/70"
         >
           Continue to RSVP →
-        </Link>
+        </a>
       </div>
     </section>
   );
