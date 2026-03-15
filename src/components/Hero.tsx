@@ -33,7 +33,7 @@ export default function Hero() {
     <section className={`${styles.hero} text-pink-900`}>
       <h1 className={styles.title}>Welcome to Jimmy & Lizzy’s Wedding</h1>
       <h2 className="mt-2 mb-10 text-2xl md:text-3xl font-semibold text-[#B58C5A]">
-        Monday, August 2nd, 2026
+        Monday, August 3rd, 2026
       </h2>
 
       <div className={styles.heroImageWrapper}>
