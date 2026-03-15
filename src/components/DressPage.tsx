@@ -82,13 +82,6 @@ export default function DressPage() {
               contribution towards our honeymoon would be hugely appreciated as
               we begin married life together.
             </p>
-
-            <a
-              href="#"
-              className="inline-block underline underline-offset-4 decoration-[#89986D]/50 hover:decoration-[#89986D] font-medium"
-            >
-              Gift list →
-            </a>
           </div>
         </div>
       </section>
