@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Button from "semantic-ui-react/dist/commonjs/elements/Button/Button";
 
 export default function DressPage() {
   return (
