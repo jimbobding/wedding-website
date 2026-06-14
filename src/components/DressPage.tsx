@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Button from "semantic-ui-react/dist/commonjs/elements/Button/Button";
 
 export default function DressPage() {
   return (
@@ -82,6 +83,15 @@ export default function DressPage() {
               contribution towards our honeymoon would be hugely appreciated as
               we begin married life together.
             </p>
+
+            <a
+              href="https://monzo.me/elizabethlatham4?h=nEvLt1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-pink-600 px-6 py-3 text-white font-semibold shadow hover:bg-pink-700 transition"
+            >
+              Contribute to Our Honeymoon
+            </a>
           </div>
         </div>
       </section>
